@@ -197,7 +197,6 @@ class Plotter:
                     raise ValueError("没有可保存的图片，请先调用绘图方法。")
                 fig = _figures[-1]
         fig.savefig(path, dpi=dpi, bbox_inches="tight")
-        print(f"图片已保存至：{path}")
 
     @staticmethod
     def subplots(

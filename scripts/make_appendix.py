@@ -30,12 +30,9 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 # (章, 节标题, 源文件路径, 节选配置或 None)
 # 节选配置: {"funcs": [保留的函数], "class_methods": {类名: [保留的方法]}}
 APPENDIX_FILES: list[tuple[str, str, str, dict | None]] = [
-    # 示例配置，按项目实际结构修改
-    # ("A", "TOPSIS 算法 (src/algorithms/topsis.py)", "src/algorithms/topsis.py", None),
-    # ("A", "熵权法 (src/algorithms/entropy_weight.py)", "src/algorithms/entropy_weight.py", None),
-    # ("B", "矩阵工具 (src/utils/matrix.py)", "src/utils/matrix.py", None),
-    # ("B", "绘图工具 (src/utils/plot.py，节选)",
-    #  "src/utils/plot.py", {"funcs": ["setup_cjk_font"], "class_methods": {"Plotter": ["line", "bar"]}}),
+    ("A", "炉温曲线热传导模型 (src/models/model.py)", "src/models/model.py", None),
+    ("A", "粒子群优化算法 (src/algorithms/pso.py)", "src/algorithms/pso.py", None),
+    ("A", "问题1~4求解主脚本 (src/solve/solve.py)", "src/solve/solve.py", None),
 ]
 
 SECTION_TITLES: dict[str, str] = {
@@ -45,10 +42,10 @@ SECTION_TITLES: dict[str, str] = {
 
 STRUCTURE_TREE = """项目代码结构：
 src/
-├── algorithms/    算法实现
-├── models/        数学模型基类
-├── solve/         求解脚本
-├── utils/          矩阵工具、数值方法、绘图
+├── algorithms/    粒子群优化算法
+├── models/        炉温曲线热传导模型
+├── solve/         问题1~4求解脚本
+├── utils/          数值方法、绘图
 └── io/            数据读写
 
 运行环境：Python 3.10+。"""

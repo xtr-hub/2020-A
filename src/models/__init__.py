@@ -1,5 +1,9 @@
 """数学建模模块。"""
 
-from src.models.base import Model, evaluate_model
+try:
+    from src.models.base import Model, evaluate_model
+except ImportError:
+    pass
 
-__all__ = ["Model", "evaluate_model"]
+from src.models.model import model
+

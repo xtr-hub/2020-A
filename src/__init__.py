@@ -39,30 +39,36 @@
 
 import numpy as np
 
-from src.algorithms.ahp import (
-    WeightVectorType,
-    calculate_weight_vector,
-    is_valid_judgment_matrix,
-)
-from src.algorithms.entropy_weight import calculate_entropy_weights
-from src.algorithms.fuzzy_comprehensive_evaluation import (
-    FuzzyOperator,
-    fuzzy_comprehensive_evaluate,
-    validate_weights,
-    validate_membership_matrix,
-    build_membership_matrix,
-)
-from src.algorithms.grey_relational_analysis import (
-    grey_relational_analysis,
-    normalize_data as _grey_normalize,
-)
-from src.algorithms.topsis import (
-    calculate_closeness,
-    convert_indicators,
-    ideal_solutions,
-    normalize_matrix,
-    weighted_normalized_matrix,
-)
+# 部分算法模块按需实现，缺失时静默跳过（对应快捷包装在调用时才会报错）
+try:
+    from src.algorithms.ahp import (
+        WeightVectorType,
+        calculate_weight_vector,
+        is_valid_judgment_matrix,
+    )
+    from src.algorithms.entropy_weight import calculate_entropy_weights
+    from src.algorithms.fuzzy_comprehensive_evaluation import (
+        FuzzyOperator,
+        fuzzy_comprehensive_evaluate,
+        validate_weights,
+        validate_membership_matrix,
+        build_membership_matrix,
+    )
+    from src.algorithms.grey_relational_analysis import (
+        grey_relational_analysis,
+        normalize_data as _grey_normalize,
+    )
+    from src.algorithms.topsis import (
+        calculate_closeness,
+        convert_indicators,
+        ideal_solutions,
+        normalize_matrix,
+        weighted_normalized_matrix,
+    )
+except ImportError:
+    pass
+
+from src.algorithms.pso import PSO
 
 from src.utils.matrix import (
     positive_transform,
@@ -134,7 +140,10 @@ from src.utils.timing import timer, timeit, Stopwatch
 plot = _Plotter
 
 # 模型基类
-from src.models.base import Model
+try:
+    from src.models.base import Model
+except ImportError:
+    pass
 
 # I/O -- 常用函数直接暴露
 from src.io.data import load_raw as load, write_matrix_excel as write_matrix, write_sheets, read_matrix_excel
